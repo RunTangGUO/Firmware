@@ -934,35 +934,20 @@ MulticopterPositionControl::reset_alt_sp()
 void
 MulticopterPositionControl::limit_altitude()
 {
-
-	float alt = _pos(2); // + _home_pos;
+	float alt = _pos(2);
 
 	/* in altitude control, limit setpoint */
 	if (-alt >= _valid_altitude_max && _run_alt_control && _pos_sp(2) <= _pos(2)) {
-
 		_pos_sp(2) = -_valid_altitude_max;
-
 		return;
-
 	}
 
 	/* in velocity control in z, prevent vehile from flying upware if at max altitude */
 	if (-alt >= _valid_altitude_max && !_run_alt_control && _vel_sp(2) <= 0.0f) {
-
 		_pos_sp(2) = -_valid_altitude_max;
-
 		_run_alt_control = true;
-
 		return;
-
 	}
-
-
-
-
-
-
-
 }
 
 
